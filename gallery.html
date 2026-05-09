@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyful Assembly - Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+     <div class="header-top">
+        <div class="logo-section">
+            <div class="church-logo" >
+                <img src="uploads/assets/Gallery/2.jpg" height="80px", width="80px">
+
+               
+            </div>
+            <div class="church-crest">
+                <i class="fas fa-cross" style="font-size: 50px; color: #DAA520;"></i>
+            </div>
+            <div class="church-name">
+                <h1>Joyful Assembly</h1>
+                <p>Pentecostal Church - Where Joy Meets Worship</p>
+            </div>
+            
+        </div>
+        <div class="contact-info">
+            <div><i class="fas fa-phone"></i> +237 670 682 146</div>
+            <div><i class="fas fa-envelope"></i> joyfulassembly237@gmail.com</div>
+            <div><i class="fas fa-clock"></i>SUN 7AM - 1PM</div>
+        </div>
+         <div class="church-logo" >
+                <img src="uploads/assets/Gallery/2.jpg" height="80px", width="80px">
+
+               
+            </div>
+    </div>
+    
+   <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="gallery.html"class="active">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+             <li><a href="pastor.html">Pastors</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hero" style="height: 300px;">
+        <div class="slider-container">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('uploads/assets/Gallery/4.jpg');">
+                <div class="slide-content">
+                    <h2>Our Gallery</h2>
+                    <p>Capturing Moments of Worship and Fellowship</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 class="section-title">Photo Gallery</h2>
+        
+        <!-- Upload Area for Local Images -->
+        <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: var(--secondary);"></i>
+            <h3>Upload Your Church Photos</h3>
+            <p>Click or drag and drop to upload images from your device</p>
+            <input type="file" id="imageUpload" accept="image/*" multiple>
+        </div>
+        
+        <!-- Gallery Controls -->
+        <div class="gallery-controls">
+            <div class="view-options">
+                <button class="view-btn active" data-view="grid">
+                    <i class="fas fa-th"></i> Grid
+                </button>
+              
+                <button class="view-btn" data-view="slideshow">
+                    <i class="fas fa-play-circle"></i> Slideshow
+                </button>
+            </div>
+            <div class="sort-options">
+                <select id="sortSelect">
+                    <option value="default">Sort by: Default</option>
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Grid View Container -->
+        <div id="gridView" class="gallery-grid"></div>
+        
+        <!-- Masonry View Container -->
+        <div id="masonryView" class="gallery-masonry" style="display: none;"></div>
+        
+        <!-- Fill View Container -->
+        <div id="fillView" class="gallery-fill" style="display: none;"></div>
+        
+        <!-- Slideshow View Container -->
+        <div id="slideshowView" class="slideshow-container">
+            <div class="slideshow-slides" id="slideshowSlides"></div>
+            <div class="slideshow-controls">
+                <button class="slideshow-btn" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="slideshow-btn" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+            <div class="slideshow-dots" id="slideshowDots"></div>
+        </div>
+        
+        <h2 class="section-title" style="margin-top: 60px;">Video Gallery</h2>
+        
+        <!-- Video Upload Area -->
+        <div class="upload-area" id="videoUploadArea">
+            <i class="fas fa-video" style="font-size: 48px; color: var(--secondary);"></i>
+            <h3>Upload Church Videos</h3>
+            <p>Click to upload videos from your device</p>
+            <input type="file" id="videoUpload" accept="video/*" multiple>
+        </div>
+        
+        <!-- Video Grid -->
+        <div id="videoGrid" class="video-grid"></div>
+    </div>
+    
+    <!-- Modal for Fullscreen View -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img id="modalImage" src="">
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Joyful Assembly</h3>
+                <p>A Pentecostal church committed to spreading the Gospel and making disciples of all nations.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html" style="color: white;">Home</a></p>
+                <p><a href="about.html" style="color: white;">About Us</a></p>
+                <p><a href="gallery.html" style="color: white;">Gallery</a></p>
+                <p><a href="contact.html" style="color: white;">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Joyful Assembly Pentecostal Church. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Store uploaded images and videos
+        let galleryImages = [];
+        let galleryVideos = [];
+        let currentSlideIndex = 0;
+        let slideshowInterval;
+        let currentView = 'slideshow';
+        
+      
+        
+        // Load saved images from localStorage
+        function loadSavedImages() {
+            const saved = localStorage.getItem('churchGallery');
+            if (saved) {
+                galleryImages = JSON.parse(saved);
+            } else {
+                galleryImages = defaultImages;
+            }
+            renderGallery();
+        }
+        
+        // Save images to localStorage
+        function saveImages() {
+            localStorage.setItem('churchGallery', JSON.stringify(galleryImages));
+        }
+        
+        // Load saved videos
+        function loadSavedVideos() {
+            const saved = localStorage.getItem('churchGallery');
+            if (saved) {
+                galleryVideos = JSON.parse(saved);
+            } else {
+                galleryImages = defaultImages;
+            }
+            renderGallery();
+        
+        }
+        
+        function saveVideos() {
+            localStorage.setItem('churchGallery', JSON.stringify(galleryGllery));
+        }
+        
+        // Handle image upload
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const newImage = {
+                            url: event.target.result,
+                            caption: file.name.split('.')[0],
+                            date: new Date(),
+                            isLocal: true
+                        };
+                        galleryImages.unshift(newImage);
+                        saveImages();
+                        renderGallery();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+        
+        // Handle video upload
+        document.getElementById('videoUpload').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                if (file.type.startsWith('video/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const newVideo = {
+                            url: event.target.result,
+                            title: file.name.split('.')[0],
+                            date: new Date(),
+                            isLocal: true
+                        };
+                        galleryVideos.unshift(newVideo);
+                        saveVideos();
+                        renderVideos();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+        
+        // Drag and drop for images
+        const uploadArea = document.getElementById('uploadArea');
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.background = 'rgba(218, 165, 32, 0.2)';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.background = '';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.background = '';
+            const files = Array.from(e.dataTransfer.files);
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const newImage = {
+                            url: event.target.result,
+                            caption: file.name.split('.')[0],
+                            date: new Date(),
+                            isLocal: true
+                        };
+                        galleryImages.unshift(newImage);
+                        saveImages();
+                        renderGallery();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+        
+        uploadArea.addEventListener('click', () => {
+            document.getElementById('imageUpload').click();
+        });
+        
+        // Render gallery based on current view
+        function renderGallery() {
+            // Sort images
+            let sortedImages = [...galleryImages];
+            const sortBy = document.getElementById('sortSelect').value;
+            if (sortBy === 'newest') {
+                sortedImages.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortBy === 'oldest') {
+                sortedImages.sort((a, b) => new Date(a.date) - new Date(b.date));
+            }
+            
+            // Render Grid View
+            const gridView = document.getElementById('gridView');
+            gridView.innerHTML = sortedImages.map((img, index) => `
+                <div class="gallery-item" onclick="openModal('${img.url}')">
+                    <img src="${img.url}" alt="${img.caption}" loading="lazy">
+                    <div class="item-overlay">
+                        <p>${img.caption}</p>
+                        <small>${new Date(img.date).toLocaleDateString()}</small>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Render Masonry View
+            const masonryView = document.getElementById('masonryView');
+            masonryView.innerHTML = sortedImages.map((img, index) => `
+                <div class="gallery-item" onclick="openModal('${img.url}')">
+                    <img src="${img.url}" alt="${img.caption}" loading="lazy">
+                    <div class="item-overlay">
+                        <p>${img.caption}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Render Fill View
+            const fillView = document.getElementById('fillView');
+            fillView.innerHTML = sortedImages.map((img, index) => `
+                <div class="gallery-item" onclick="openModal('${img.url}')">
+                    <img src="${img.url}" alt="${img.caption}" loading="lazy">
+                    <div class="item-overlay">
+                        <h3>${img.caption}</h3>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Render Slideshow
+            renderSlideshow(sortedImages);
+        }
+        
+        function renderSlideshow(images) {
+            const slideshowSlides = document.getElementById('slideshowSlides');
+            const slideshowDots = document.getElementById('slideshowDots');
+            
+            slideshowSlides.innerHTML = images.map((img, index) => `
+                <div class="slideshow-slide" data-index="${index}">
+                    <img src="${img.url}" alt="${img.caption}">
+                    <div class="slide-caption">
+                        <h3>${img.caption}</h3>
+                    </div>
+                </div>
+            `).join('');
+            
+            slideshowDots.innerHTML = images.map((_, index) => `
+                <span class="dot" onclick="currentSlide(${index})"></span>
+            `).join('');
+            
+            if (images.length > 0) {
+                showSlide(0);
+                startSlideshow();
+            }
+        }
+        
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slideshow-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (slides.length === 0) return;
+            
+            if (index >= slides.length) currentSlideIndex = 0;
+            if (index < 0) currentSlideIndex = slides.length - 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentSlideIndex].classList.add('active');
+            if (dots[currentSlideIndex]) dots[currentSlideIndex].classList.add('active');
+        }
+        
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            showSlide(currentSlideIndex);
+            resetSlideshowTimer();
+        }
+        
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+            resetSlideshowTimer();
+        }
+        
+        function startSlideshow() {
+            if (slideshowInterval) clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(() => {
+                if (currentView === 'slideshow') {
+                    currentSlideIndex++;
+                    showSlide(currentSlideIndex);
+                }
+            }, 4000);
+        }
+        
+        function resetSlideshowTimer() {
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+                startSlideshow();
+            }
+        }
+        
+        // Render videos
+        function renderVideos() {
+            const videoGrid = document.getElementById('videoGrid');
+            if (galleryVideos.length === 0) {
+                videoGrid.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No videos uploaded yet. Click above to upload church videos.</p>';
+                return;
+            }
+            
+            videoGrid.innerHTML = galleryVideos.map((video, index) => `
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="${video.url}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h4>${video.title}</h4>
+                        <small>Added: ${new Date(video.date).toLocaleDateString()}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Change view
+        function changeView(view) {
+            currentView = view;
+            
+            // Hide all views
+            document.getElementById('gridView').style.display = 'none';
+            document.getElementById('masonryView').style.display = 'none';
+            document.getElementById('fillView').style.display = 'none';
+            document.getElementById('slideshowView').style.display = 'none';
+            
+            // Show selected view
+            if (view === 'grid') {
+                document.getElementById('gridView').style.display = 'grid';
+            } else if (view === 'masonry') {
+                document.getElementById('masonryView').style.display = 'block';
+            } else if (view === 'fill') {
+                document.getElementById('fillView').style.display = 'flex';
+            } else if (view === 'slideshow') {
+                document.getElementById('slideshowView').style.display = 'block';
+                startSlideshow();
+            }
+            
+            // Update active button
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.view === view) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        // Open modal for fullscreen view
+        function openModal(imageUrl) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = imageUrl;
+        }
+        
+        // Delete image (optional feature)
+        function deleteImage(index) {
+            if (confirm('Are you sure you want to delete this image?')) {
+                galleryImages.splice(index, 1);
+                saveImages();
+                renderGallery();
+            }
+        }
+        
+        // Sort event listener
+        document.getElementById('sortSelect').addEventListener('change', () => {
+            renderGallery();
+        });
+        
+        // View button event listeners
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeView(btn.dataset.view);
+            });
+        });
+        
+        // Close modal
+        document.querySelector('.close-modal').addEventListener('click', () => {
+            document.getElementById('imageModal').classList.remove('active');
+        });
+        
+        document.getElementById('imageModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('imageModal')) {
+                document.getElementById('imageModal').classList.remove('active');
+            }
+        });
+        
+       
+        
+        // Initialize
+        loadSavedImages();
+        loadSavedVideos();
+        changeView('grid');
+        
+        // Keyboard navigation for modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('imageModal').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

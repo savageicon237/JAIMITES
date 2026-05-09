@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyful Assembly - Meet Our Pastors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Pastors Page Additional Styles */
+        .pastors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .pastor-card {
+            background: var(--white);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .pastor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .pastor-image {
+            width: 50%;
+            height: 700px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .pastor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: grid;
+            transition: var(--transition);
+        }
+        
+        .pastor-card:hover .pastor-image img {
+            transform: scale(1.05);
+        }
+        
+        .pastor-social {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            background: rgba(139, 0, 0, 0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            transition: var(--transition);
+        }
+        
+        .pastor-card:hover .pastor-social {
+            bottom: 0;
+        }
+        
+        .pastor-social a {
+            color: var(--white);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+        
+        .pastor-social a:hover {
+            color: var(--secondary);
+            transform: scale(1.2);
+        }
+        
+        .pastor-info {
+            padding: 25px;
+        }
+        
+        .pastor-info h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .pastor-title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .pastor-bio {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 15px;
+            text-align: left;
+        }
+        
+        .pastor-bio p {
+            margin-bottom: 10px;
+        }
+        
+        .pastor-quote {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 15px;
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .pastor-quote::before {
+            content: '"';
+            font-size: 40px;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: var(--secondary);
+            opacity: 0.5;
+            font-family: serif;
+        }
+        
+        .leadership-section {
+            margin-top: 60px;
+            background: var(--light);
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .leader-card {
+            text-align: center;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .leader-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid var(--secondary);
+        }
+        
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .leader-card h4 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .leader-title {
+            color: var(--secondary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .pastors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .leadership-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+     <div class="header-top">
+        <div class="logo-section">
+            <div class="church-logo" >
+                <img src="uploads/assets/Gallery/2.jpg" height="80px", width="80px">
+
+               
+            </div>
+            <div class="church-crest">
+                <i class="fas fa-cross" style="font-size: 50px; color: #DAA520;"></i>
+            </div>
+            <div class="church-name">
+                <h1>Joyful Assembly</h1>
+                <p>Pentecostal Church - Where Joy Meets Worship</p>
+            </div>
+            
+        </div>
+        <div class="contact-info">
+            <div><i class="fas fa-phone"></i> +237 670 682 146</div>
+            <div><i class="fas fa-envelope"></i> joyfulassembly237@gmail.com</div>
+            <div><i class="fas fa-clock"></i>SUN 7AM - 1PM</div>
+        </div>
+         <div class="church-logo" >
+                <img src="uploads/assets/Gallery/2.jpg" height="80px", width="80px">
+
+               
+            </div>
+    </div>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html" >Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+             <li><a href="pastor.html"class="active">Pastors</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hero" style="height: 300px;">
+        <div class="slider-container">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('uploads/assets/Gallery/4.jpg');"></div>
+                <div class="slide-content">
+                    <h2>Meet Our Pastoral Team</h2>
+                    <p>Spiritual Leaders Committed to Serving God and His People</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Lead Pastors Section -->
+        <h2 class="section-title">Lead Pastors</h2>
+        <div class="pastors-grid">
+            <!-- Senior Pastor -->
+            <div class="pastor-card">
+                <div class="pastor-image">
+                    <img src="uploads/assets/Gallery/6.jpg" alt="Senior Pastor" onerror="this.src='https://randomuser.me/api/portraits/men/32.jpg'">
+                    <div class="pastor-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/+237 670 682 146"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                   
+                </div>
+                <div class="pastor-info">
+                    <h3>Pastor </h3>
+                    <span class="pastor-title">Senior Pastor & Founder</span>
+                    <div class="pastor-bio">
+                        <p>Pastor "" is a servant and prophet of God dedicated to preaching the Gospel and gathering souls for the lord almighty he also impacts lives and communities through his preaching and Ministry</p>
+                        <p></p>
+                    </div>
+                    <div class="pastor-quote">
+                        "My greatest joy is seeing lives transformed by the power of the Holy Spirit."
+                    </div>
+                </div>
+            </div>
+            
+          
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Joyful Assembly</h3>
+                <p>A Pentecostal church committed to spreading the Gospel and making disciples of all nations.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="index.html" style="color: white;">Home</a></p>
+                <p><a href="about.html" style="color: white;">About Us</a></p>
+                <p><a href="pastors.html" style="color: white;">Our Pastors</a></p>
+                <p><a href="gallery.html" style="color: white;">Gallery</a></p>
+                <p><a href="contact.html" style="color: white;">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Joyful Assembly Pentecostal Church. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Add smooth scroll and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to pastor cards
+            const cards = document.querySelectorAll('.pastor-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+        
+        // Helper to replace images with your local ones
+        // To use your own photos, replace the image paths below:
+        // Current image paths are in the img src attributes
+        // Example: src="assets/images/senior-pastor.jpg"
+        // Replace with: src="your-local-image.jpg" or full path to your photo
+    </script>
+</body>
+</html>
