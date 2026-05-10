@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,370 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-  
+    <style>
+        /* Gallery Page Layout */
+        .gallery-wrapper {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        /* Sidebar Styles */
+        .gallery-sidebar {
+            width: 280px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            flex-shrink: 0;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .sidebar-header i {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-menu {
+            padding: 15px;
+        }
+        
+        .menu-section {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .menu-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .menu-title i {
+            width: 25px;
+            color: var(--secondary);
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #555;
+            text-decoration: none;
+        }
+        
+        .menu-item:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+        
+        .menu-item.active {
+            background: var(--secondary);
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .menu-item i {
+            width: 25px;
+            margin-right: 10px;
+        }
+        
+        .property-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .property-label {
+            color: #888;
+        }
+        
+        .property-value {
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        /* Main Content */
+        .gallery-main {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* View Toggles */
+        .view-toggles {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            background: var(--white);
+            padding: 10px;
+            border-radius: 50px;
+            display: inline-flex;
+            box-shadow: var(--shadow);
+        }
+        
+        .view-toggle {
+            padding: 10px 25px;
+            border: none;
+            background: var(--light);
+            cursor: pointer;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .view-toggle.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .view-toggle:hover:not(.active) {
+            background: var(--secondary);
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .media-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .media-preview {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: var(--dark);
+        }
+        
+        .media-info {
+            padding: 15px;
+        }
+        
+        .media-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .media-description {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.4;
+        }
+        
+        .media-date {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 8px;
+        }
+        
+        /* Slideshow View */
+        .slideshow-container {
+            background: var(--dark);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slideshow-slide {
+            display: none;
+            position: relative;
+        }
+        
+        .slideshow-slide.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .slideshow-slide img, 
+        .slideshow-slide video {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            background: var(--dark);
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .slide-caption h3 {
+            margin: 0 0 5px;
+        }
+        
+        .slideshow-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+        
+        .slideshow-btn {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s;
+            pointer-events: auto;
+        }
+        
+        .slideshow-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+        
+        .slideshow-dots {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background-color: var(--secondary);
+            transform: scale(1.2);
+        }
+        
+        /* Stats Badge */
+        .stats-badge {
+            background: var(--light);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .stats-badge span {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Modal for fullscreen */
+        .media-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .media-modal.active {
+            display: flex;
+        }
+        
+        .media-modal img, 
+        .media-modal video {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        .modal-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            background: rgba(0,0,0,0.6);
+            padding: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-sidebar {
+                width: 100%;
+                position: static;
+            }
+            .slideshow-slide img, 
+            .slideshow-slide video {
+                height: 300px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
      <div class="header-top">
@@ -39,96 +401,149 @@
             </div>
     </div>
     
-   <nav>
+    <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
-            <li><a href="gallery.html"class="active">Gallery</a></li>
+            <li><a href="pastors.html">Our Pastors</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
-             <li><a href="pastor.html">Pastors</a></li>
             <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
         </ul>
     </nav>
     
     <div class="hero" style="height: 300px;">
         <div class="slider-container">
-            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('uploads/assets/Gallery/4.jpg');">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('uploads/assets/Gallery/4.jpg');"></div> >
                 <div class="slide-content">
                     <h2>Our Gallery</h2>
-                    <p>Capturing Moments of Worship and Fellowship</p>
+                    <p>Capturing God's Glory Through Moments of Worship and Fellowship</p>
                 </div>
             </div>
         </div>
     </div>
     
     <div class="container">
-        <h2 class="section-title">Photo Gallery</h2>
-        
-        <!-- Upload Area for Local Images -->
-        <div class="upload-area" id="uploadArea">
-            <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: var(--secondary);"></i>
-            <h3>Upload Your Church Photos</h3>
-            <p>Click or drag and drop to upload images from your device</p>
-            <input type="file" id="imageUpload" accept="image/*" multiple>
-        </div>
-        
-        <!-- Gallery Controls -->
-        <div class="gallery-controls">
-            <div class="view-options">
-                <button class="view-btn active" data-view="grid">
-                    <i class="fas fa-th"></i> Grid
-                </button>
-              
-                <button class="view-btn" data-view="slideshow">
-                    <i class="fas fa-play-circle"></i> Slideshow
-                </button>
+        <div class="gallery-wrapper">
+            <!-- Sidebar -->
+            <div class="gallery-sidebar">
+                <div class="sidebar-header">
+                    <i class="fas fa-sliders-h"></i>
+                    <h3>Gallery Controls</h3>
+                </div>
+                
+                <div class="sidebar-menu">
+                    <!-- Display Menu -->
+                    <div class="menu-section">
+                        <div class="menu-title">
+                            <i class="fas fa-eye"></i>
+                            Display Mode
+                        </div>
+                        <div class="menu-item active" data-view="grid">
+                            <i class="fas fa-th"></i> Grid View
+                        </div>
+                        <div class="menu-item" data-view="slideshow">
+                            <i class="fas fa-play-circle"></i> Slideshow
+                        </div>
+                    </div>
+                    
+                    <!-- Media Type Menu -->
+                    <div class="menu-section">
+                        <div class="menu-title">
+                            <i class="fas fa-filter"></i>
+                            Media Type
+                        </div>
+                        <div class="menu-item active" data-type="all">
+                            <i class="fas fa-layer-group"></i> All Media
+                        </div>
+                        <div class="menu-item" data-type="photos">
+                            <i class="fas fa-image"></i> Photos Only
+                        </div>
+                        <div class="menu-item" data-type="videos">
+                            <i class="fas fa-video"></i> Videos Only
+                        </div>
+                    </div>
+                    
+                    <!-- Sort Options -->
+                    <div class="menu-section">
+                        <div class="menu-title">
+                            <i class="fas fa-sort-amount-down"></i>
+                            Sort By
+                        </div>
+                        <div class="menu-item" data-sort="newest">
+                            <i class="fas fa-calendar-plus"></i> Newest First
+                        </div>
+                        <div class="menu-item" data-sort="oldest">
+                            <i class="fas fa-calendar-minus"></i> Oldest First
+                        </div>
+                        <div class="menu-item" data-sort="az">
+                            <i class="fas fa-sort-alpha-down"></i> A to Z
+                        </div>
+                    </div>
+                    
+                    <!-- Properties / Stats -->
+                    <div class="menu-section">
+                        <div class="menu-title">
+                            <i class="fas fa-chart-simple"></i>
+                            Gallery Stats
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Total Photos:</span>
+                            <span class="property-value" id="totalPhotos">0</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Total Videos:</span>
+                            <span class="property-value" id="totalVideos">0</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Total Media:</span>
+                            <span class="property-value" id="totalMedia">0</span>
+                        </div>
+                        <div class="property-item">
+                            <span class="property-label">Last Updated:</span>
+                            <span class="property-value" id="lastUpdated">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-badge">
+                        <i class="fas fa-church" style="color: var(--secondary);"></i>
+                        <span>Joyful Assembly</span>
+                        <p style="font-size: 12px; margin-top: 5px;">Est. 1985</p>
+                    </div>
+                </div>
             </div>
-            <div class="sort-options">
-                <select id="sortSelect">
-                    <option value="default">Sort by: Default</option>
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                </select>
+            
+            <!-- Main Content -->
+            <div class="gallery-main">
+                <!-- View Toggles (Alternative quick access) -->
+                <div class="view-toggles">
+                    <button class="view-toggle active" data-view="grid">📷 Grid View</button>
+                    <button class="view-toggle" data-view="slideshow">🎬 Slideshow</button>
+                </div>
+                
+                <!-- Grid View Container -->
+                <div id="gridViewContainer"></div>
+                
+                <!-- Slideshow View Container -->
+                <div id="slideshowViewContainer" style="display: none;">
+                    <div class="slideshow-container">
+                        <div id="slideshowSlides"></div>
+                        <div class="slideshow-controls">
+                            <button class="slideshow-btn" id="prevSlide">&#10094;</button>
+                            <button class="slideshow-btn" id="nextSlide">&#10095;</button>
+                        </div>
+                    </div>
+                    <div class="slideshow-dots" id="slideshowDots"></div>
+                </div>
             </div>
         </div>
-        
-        <!-- Grid View Container -->
-        <div id="gridView" class="gallery-grid"></div>
-        
-        <!-- Masonry View Container -->
-        <div id="masonryView" class="gallery-masonry" style="display: none;"></div>
-        
-        <!-- Fill View Container -->
-        <div id="fillView" class="gallery-fill" style="display: none;"></div>
-        
-        <!-- Slideshow View Container -->
-        <div id="slideshowView" class="slideshow-container">
-            <div class="slideshow-slides" id="slideshowSlides"></div>
-            <div class="slideshow-controls">
-                <button class="slideshow-btn" onclick="changeSlide(-1)">&#10094;</button>
-                <button class="slideshow-btn" onclick="changeSlide(1)">&#10095;</button>
-            </div>
-            <div class="slideshow-dots" id="slideshowDots"></div>
-        </div>
-        
-        <h2 class="section-title" style="margin-top: 60px;">Video Gallery</h2>
-        
-        <!-- Video Upload Area -->
-        <div class="upload-area" id="videoUploadArea">
-            <i class="fas fa-video" style="font-size: 48px; color: var(--secondary);"></i>
-            <h3>Upload Church Videos</h3>
-            <p>Click to upload videos from your device</p>
-            <input type="file" id="videoUpload" accept="video/*" multiple>
-        </div>
-        
-        <!-- Video Grid -->
-        <div id="videoGrid" class="video-grid"></div>
     </div>
     
-    <!-- Modal for Fullscreen View -->
-    <div id="imageModal" class="modal">
+    <!-- Fullscreen Modal -->
+    <div id="mediaModal" class="media-modal">
         <span class="close-modal">&times;</span>
-        <img id="modalImage" src="">
+        <div id="modalContent"></div>
+        <div id="modalCaption" class="modal-caption"></div>
     </div>
     
     <footer>
@@ -141,6 +556,7 @@
                 <h3>Quick Links</h3>
                 <p><a href="index.html" style="color: white;">Home</a></p>
                 <p><a href="about.html" style="color: white;">About Us</a></p>
+                <p><a href="pastors.html" style="color: white;">Our Pastors</a></p>
                 <p><a href="gallery.html" style="color: white;">Gallery</a></p>
                 <p><a href="contact.html" style="color: white;">Contact</a></p>
             </div>
@@ -160,204 +576,200 @@
     </footer>
     
     <script>
-        // Store uploaded images and videos
-        let galleryImages = [];
-        let galleryVideos = [];
+        // ============================================================
+        // ADMIN ONLY: Edit this array to add/remove photos and videos
+        // Only the host computer can modify this code
+        // ============================================================
+        
+        let galleryData = {
+            photos: [
+              {
+    id: 1, 
+    url: "uploads/assets/Gallery/8.jpg ", 
+    title: "Main Pastor",
+    description: "Sunday Service",
+    date: "2024-05-10"
+},         {
+    id: 2, 
+    url: "uploads/assets/Gallery/9.jpg ", 
+    title: "Main Pastor",
+    description: "Sunday Service",
+    date: "2024-05-10"
+},         {
+    id: 3, 
+    url: "uploads/assets/Gallery/34.jpg ", 
+    title: "Main Pastor",
+    description: "Sunday Service",
+    date: "2024-05-10"
+},
+            ],
+            videos: [
+                {
+                    id: 101,
+                    url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+                    title: "Sunday Sermon Highlights",
+                    description: "Powerful message from Dr. Michael Thompson",
+                    date: "2024-02-25"
+                },
+                {
+                    id: 102,
+                    url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4",
+                    title: "Youth Praise Night",
+                    description: "Young people worshiping",
+                    date: "2024-03-05"
+                }
+            ]
+        };
+        
+        // ============================================================
+        // TO ADD NEW PHOTOS (ADMIN ONLY):
+        // Copy this template and paste inside the photos array above:
+        //
+        // {
+        //     id: 7,
+        //     url: "assets/images/your-photo.jpg",
+        //     title: "Photo Title",
+        //     description: "Photo description here",
+        //     date: "2024-03-10"
+        // },
+        //
+        // TO ADD NEW VIDEOS (ADMIN ONLY):
+        // Copy this template and paste inside the videos array above:
+        //
+        // {
+        //     id: 103,
+        //     url: "assets/videos/your-video.mp4",
+        //     title: "Video Title",
+        //     description: "Video description here",
+        //     date: "2024-03-10"
+        // },
+        // ============================================================
+        
+        
+        // Application State
+        let currentView = 'grid';
+        let currentType = 'all';
+        let currentSort = 'newest';
         let currentSlideIndex = 0;
-        let slideshowInterval;
-        let currentView = 'slideshow';
+        let slideInterval;
         
-      
-        
-        // Load saved images from localStorage
-        function loadSavedImages() {
-            const saved = localStorage.getItem('churchGallery');
-            if (saved) {
-                galleryImages = JSON.parse(saved);
-            } else {
-                galleryImages = defaultImages;
-            }
-            renderGallery();
-        }
-        
-        // Save images to localStorage
-        function saveImages() {
-            localStorage.setItem('churchGallery', JSON.stringify(galleryImages));
-        }
-        
-        // Load saved videos
-        function loadSavedVideos() {
-            const saved = localStorage.getItem('churchGallery');
-            if (saved) {
-                galleryVideos = JSON.parse(saved);
-            } else {
-                galleryImages = defaultImages;
-            }
-            renderGallery();
-        
-        }
-        
-        function saveVideos() {
-            localStorage.setItem('churchGallery', JSON.stringify(galleryGllery));
-        }
-        
-        // Handle image upload
-        document.getElementById('imageUpload').addEventListener('change', function(e) {
-            const files = Array.from(e.target.files);
-            files.forEach(file => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const newImage = {
-                            url: event.target.result,
-                            caption: file.name.split('.')[0],
-                            date: new Date(),
-                            isLocal: true
-                        };
-                        galleryImages.unshift(newImage);
-                        saveImages();
-                        renderGallery();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-        
-        // Handle video upload
-        document.getElementById('videoUpload').addEventListener('change', function(e) {
-            const files = Array.from(e.target.files);
-            files.forEach(file => {
-                if (file.type.startsWith('video/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const newVideo = {
-                            url: event.target.result,
-                            title: file.name.split('.')[0],
-                            date: new Date(),
-                            isLocal: true
-                        };
-                        galleryVideos.unshift(newVideo);
-                        saveVideos();
-                        renderVideos();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-        
-        // Drag and drop for images
-        const uploadArea = document.getElementById('uploadArea');
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.style.background = 'rgba(218, 165, 32, 0.2)';
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.background = '';
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.style.background = '';
-            const files = Array.from(e.dataTransfer.files);
-            files.forEach(file => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const newImage = {
-                            url: event.target.result,
-                            caption: file.name.split('.')[0],
-                            date: new Date(),
-                            isLocal: true
-                        };
-                        galleryImages.unshift(newImage);
-                        saveImages();
-                        renderGallery();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-        
-        uploadArea.addEventListener('click', () => {
-            document.getElementById('imageUpload').click();
-        });
-        
-        // Render gallery based on current view
-        function renderGallery() {
-            // Sort images
-            let sortedImages = [...galleryImages];
-            const sortBy = document.getElementById('sortSelect').value;
-            if (sortBy === 'newest') {
-                sortedImages.sort((a, b) => new Date(b.date) - new Date(a.date));
-            } else if (sortBy === 'oldest') {
-                sortedImages.sort((a, b) => new Date(a.date) - new Date(b.date));
+        // Get filtered and sorted media
+        function getFilteredMedia() {
+            let media = [];
+            
+            // Add photos
+            if (currentType === 'all' || currentType === 'photos') {
+                media.push(...galleryData.photos.map(p => ({ ...p, mediaType: 'photo' })));
             }
             
-            // Render Grid View
-            const gridView = document.getElementById('gridView');
-            gridView.innerHTML = sortedImages.map((img, index) => `
-                <div class="gallery-item" onclick="openModal('${img.url}')">
-                    <img src="${img.url}" alt="${img.caption}" loading="lazy">
-                    <div class="item-overlay">
-                        <p>${img.caption}</p>
-                        <small>${new Date(img.date).toLocaleDateString()}</small>
-                    </div>
-                </div>
-            `).join('');
+            // Add videos
+            if (currentType === 'all' || currentType === 'videos') {
+                media.push(...galleryData.videos.map(v => ({ ...v, mediaType: 'video' })));
+            }
             
-            // Render Masonry View
-            const masonryView = document.getElementById('masonryView');
-            masonryView.innerHTML = sortedImages.map((img, index) => `
-                <div class="gallery-item" onclick="openModal('${img.url}')">
-                    <img src="${img.url}" alt="${img.caption}" loading="lazy">
-                    <div class="item-overlay">
-                        <p>${img.caption}</p>
-                    </div>
-                </div>
-            `).join('');
+            // Sort
+            if (currentSort === 'newest') {
+                media.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (currentSort === 'oldest') {
+                media.sort((a, b) => new Date(a.date) - new Date(b.date));
+            } else if (currentSort === 'az') {
+                media.sort((a, b) => a.title.localeCompare(b.title));
+            }
             
-            // Render Fill View
-            const fillView = document.getElementById('fillView');
-            fillView.innerHTML = sortedImages.map((img, index) => `
-                <div class="gallery-item" onclick="openModal('${img.url}')">
-                    <img src="${img.url}" alt="${img.caption}" loading="lazy">
-                    <div class="item-overlay">
-                        <h3>${img.caption}</h3>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Render Slideshow
-            renderSlideshow(sortedImages);
+            return media;
         }
         
-        function renderSlideshow(images) {
-            const slideshowSlides = document.getElementById('slideshowSlides');
-            const slideshowDots = document.getElementById('slideshowDots');
+        // Update stats in sidebar
+        function updateStats() {
+            document.getElementById('totalPhotos').textContent = galleryData.photos.length;
+            document.getElementById('totalVideos').textContent = galleryData.videos.length;
+            document.getElementById('totalMedia').textContent = galleryData.photos.length + galleryData.videos.length;
             
-            slideshowSlides.innerHTML = images.map((img, index) => `
+            const allDates = [...galleryData.photos, ...galleryData.videos].map(m => new Date(m.date));
+            const latestDate = new Date(Math.max(...allDates));
+            document.getElementById('lastUpdated').textContent = latestDate.toLocaleDateString();
+        }
+        
+        // Render Grid View
+        function renderGridView() {
+            const media = getFilteredMedia();
+            const container = document.getElementById('gridViewContainer');
+            
+            if (media.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 60px; background: var(--white); border-radius: 20px;">
+                        <i class="fas fa-images" style="font-size: 64px; color: var(--secondary); margin-bottom: 20px;"></i>
+                        <h3>No Media Found</h3>
+                        <p>Try changing the filter settings above</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="gallery-grid">
+                    ${media.map(item => `
+                        <div class="media-card" onclick="openMediaModal('${item.url}', '${item.title}', '${item.description}', '${item.mediaType}')">
+                            ${item.mediaType === 'photo' 
+                                ? `<img src="${item.url}" class="media-preview" alt="${item.title}">`
+                                : `<video class="media-preview" muted><source src="${item.url}" type="video/mp4"></video>`
+                            }
+                            <div class="media-info">
+                                <div class="media-title">${item.title}</div>
+                                <div class="media-description">${item.description || ''}</div>
+                                <div class="media-date"><i class="far fa-calendar-alt"></i> ${new Date(item.date).toLocaleDateString()}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        // Render Slideshow
+        function renderSlideshow() {
+            const media = getFilteredMedia();
+            const slidesContainer = document.getElementById('slideshowSlides');
+            const dotsContainer = document.getElementById('slideshowDots');
+            
+            if (media.length === 0) {
+                slidesContainer.innerHTML = `
+                    <div style="text-align: center; padding: 100px; color: white;">
+                        <i class="fas fa-play-circle" style="font-size: 64px; margin-bottom: 20px;"></i>
+                        <h3>No Media Available</h3>
+                    </div>
+                `;
+                dotsContainer.innerHTML = '';
+                return;
+            }
+            
+            slidesContainer.innerHTML = media.map((item, index) => `
                 <div class="slideshow-slide" data-index="${index}">
-                    <img src="${img.url}" alt="${img.caption}">
+                    ${item.mediaType === 'photo' 
+                        ? `<img src="${item.url}" alt="${item.title}">`
+                        : `<video controls><source src="${item.url}" type="video/mp4"></video>`
+                    }
                     <div class="slide-caption">
-                        <h3>${img.caption}</h3>
+                        <h3>${item.title}</h3>
+                        <p>${item.description || ''}</p>
+                        <small>${new Date(item.date).toLocaleDateString()}</small>
                     </div>
                 </div>
             `).join('');
             
-            slideshowDots.innerHTML = images.map((_, index) => `
-                <span class="dot" onclick="currentSlide(${index})"></span>
+            dotsContainer.innerHTML = media.map((_, index) => `
+                <span class="dot ${index === currentSlideIndex ? 'active' : ''}" onclick="goToSlide(${index})"></span>
             `).join('');
             
-            if (images.length > 0) {
-                showSlide(0);
-                startSlideshow();
-            }
+            // Reset slide index
+            currentSlideIndex = 0;
+            showSlide(0);
+            startSlideshowAuto();
         }
         
         function showSlide(index) {
             const slides = document.querySelectorAll('.slideshow-slide');
             const dots = document.querySelectorAll('.dot');
+            const media = getFilteredMedia();
             
             if (slides.length === 0) return;
             
@@ -365,147 +777,168 @@
             if (index < 0) currentSlideIndex = slides.length - 1;
             
             slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots.length) dots.forEach(dot => dot.classList.remove('active'));
             
-            slides[currentSlideIndex].classList.add('active');
+            if (slides[currentSlideIndex]) slides[currentSlideIndex].classList.add('active');
             if (dots[currentSlideIndex]) dots[currentSlideIndex].classList.add('active');
         }
         
         function changeSlide(direction) {
+            const media = getFilteredMedia();
+            if (media.length === 0) return;
+            
             currentSlideIndex += direction;
             showSlide(currentSlideIndex);
             resetSlideshowTimer();
         }
         
-        function currentSlide(index) {
+        function goToSlide(index) {
             currentSlideIndex = index;
             showSlide(currentSlideIndex);
             resetSlideshowTimer();
         }
         
-        function startSlideshow() {
-            if (slideshowInterval) clearInterval(slideshowInterval);
-            slideshowInterval = setInterval(() => {
+        function startSlideshowAuto() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
                 if (currentView === 'slideshow') {
-                    currentSlideIndex++;
-                    showSlide(currentSlideIndex);
+                    const media = getFilteredMedia();
+                    if (media.length > 0) {
+                        currentSlideIndex++;
+                        if (currentSlideIndex >= media.length) currentSlideIndex = 0;
+                        showSlide(currentSlideIndex);
+                    }
                 }
-            }, 4000);
+            }, 5000);
         }
         
         function resetSlideshowTimer() {
-            if (slideshowInterval) {
-                clearInterval(slideshowInterval);
-                startSlideshow();
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                startSlideshowAuto();
             }
-        }
-        
-        // Render videos
-        function renderVideos() {
-            const videoGrid = document.getElementById('videoGrid');
-            if (galleryVideos.length === 0) {
-                videoGrid.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No videos uploaded yet. Click above to upload church videos.</p>';
-                return;
-            }
-            
-            videoGrid.innerHTML = galleryVideos.map((video, index) => `
-                <div class="video-card">
-                    <video controls preload="metadata">
-                        <source src="${video.url}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-info">
-                        <h4>${video.title}</h4>
-                        <small>Added: ${new Date(video.date).toLocaleDateString()}</small>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Change view
-        function changeView(view) {
-            currentView = view;
-            
-            // Hide all views
-            document.getElementById('gridView').style.display = 'none';
-            document.getElementById('masonryView').style.display = 'none';
-            document.getElementById('fillView').style.display = 'none';
-            document.getElementById('slideshowView').style.display = 'none';
-            
-            // Show selected view
-            if (view === 'grid') {
-                document.getElementById('gridView').style.display = 'grid';
-            } else if (view === 'masonry') {
-                document.getElementById('masonryView').style.display = 'block';
-            } else if (view === 'fill') {
-                document.getElementById('fillView').style.display = 'flex';
-            } else if (view === 'slideshow') {
-                document.getElementById('slideshowView').style.display = 'block';
-                startSlideshow();
-            }
-            
-            // Update active button
-            document.querySelectorAll('.view-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.view === view) {
-                    btn.classList.add('active');
-                }
-            });
         }
         
         // Open modal for fullscreen view
-        function openModal(imageUrl) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
+        function openMediaModal(url, title, description, type) {
+            const modal = document.getElementById('mediaModal');
+            const modalContent = document.getElementById('modalContent');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            if (type === 'photo') {
+                modalContent.innerHTML = `<img src="${url}" alt="${title}">`;
+            } else {
+                modalContent.innerHTML = `<video controls autoplay><source src="${url}" type="video/mp4"></video>`;
+            }
+            
+            modalCaption.innerHTML = `<h3>${title}</h3><p>${description || ''}</p>`;
             modal.classList.add('active');
-            modalImg.src = imageUrl;
         }
         
-        // Delete image (optional feature)
-        function deleteImage(index) {
-            if (confirm('Are you sure you want to delete this image?')) {
-                galleryImages.splice(index, 1);
-                saveImages();
-                renderGallery();
+        // Refresh all views
+        function refreshGallery() {
+            updateStats();
+            
+            if (currentView === 'grid') {
+                renderGridView();
+            } else {
+                renderSlideshow();
             }
         }
         
-        // Sort event listener
-        document.getElementById('sortSelect').addEventListener('change', () => {
-            renderGallery();
-        });
-        
-        // View button event listeners
-        document.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                changeView(btn.dataset.view);
+        // Switch view
+        function setView(view) {
+            currentView = view;
+            
+            const gridContainer = document.getElementById('gridViewContainer');
+            const slideshowContainer = document.getElementById('slideshowViewContainer');
+            const viewToggles = document.querySelectorAll('.view-toggle');
+            const sidebarItems = document.querySelectorAll('.menu-item[data-view]');
+            
+            if (view === 'grid') {
+                gridContainer.style.display = 'block';
+                slideshowContainer.style.display = 'none';
+                renderGridView();
+            } else {
+                gridContainer.style.display = 'none';
+                slideshowContainer.style.display = 'block';
+                renderSlideshow();
+            }
+            
+            viewToggles.forEach(toggle => {
+                toggle.classList.toggle('active', toggle.dataset.view === view);
             });
+            
+            sidebarItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.view === view);
+            });
+        }
+        
+        // Set media type filter
+        function setMediaType(type) {
+            currentType = type;
+            
+            const sidebarItems = document.querySelectorAll('.menu-item[data-type]');
+            sidebarItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.type === type);
+            });
+            
+            refreshGallery();
+        }
+        
+        // Set sort
+        function setSort(sort) {
+            currentSort = sort;
+            
+            const sidebarItems = document.querySelectorAll('.menu-item[data-sort]');
+            sidebarItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.sort === sort);
+            });
+            
+            refreshGallery();
+        }
+        
+        // Event Listeners
+        document.querySelectorAll('.menu-item[data-view]').forEach(item => {
+            item.addEventListener('click', () => setView(item.dataset.view));
         });
         
-        // Close modal
-        document.querySelector('.close-modal').addEventListener('click', () => {
-            document.getElementById('imageModal').classList.remove('active');
+        document.querySelectorAll('.view-toggle').forEach(item => {
+            item.addEventListener('click', () => setView(item.dataset.view));
         });
         
-        document.getElementById('imageModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('imageModal')) {
-                document.getElementById('imageModal').classList.remove('active');
+        document.querySelectorAll('.menu-item[data-type]').forEach(item => {
+            item.addEventListener('click', () => setMediaType(item.dataset.type));
+        });
+        
+        document.querySelectorAll('.menu-item[data-sort]').forEach(item => {
+            item.addEventListener('click', () => setSort(item.dataset.sort));
+        });
+        
+        document.getElementById('prevSlide')?.addEventListener('click', () => changeSlide(-1));
+        document.getElementById('nextSlide')?.addEventListener('click', () => changeSlide(1));
+        
+        // Modal close
+        document.querySelector('.close-modal')?.addEventListener('click', () => {
+            document.getElementById('mediaModal').classList.remove('active');
+        });
+        
+        document.getElementById('mediaModal')?.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('mediaModal')) {
+                document.getElementById('mediaModal').classList.remove('active');
             }
         });
         
-       
-        
-        // Initialize
-        loadSavedImages();
-        loadSavedVideos();
-        changeView('grid');
-        
-        // Keyboard navigation for modal
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                document.getElementById('imageModal').classList.remove('active');
+                document.getElementById('mediaModal').classList.remove('active');
             }
         });
+        
+        // Initialize
+        updateStats();
+        setView('grid');
     </script>
 </body>
 </html>
