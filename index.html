@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 </head>
 <body>
     <!-- Header -->
@@ -40,14 +41,17 @@
     </div>
     
     <nav>
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-             <li><a href="pastor.html">Pastors</a></li>
-            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-        </ul>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i> Menu
+    </div>
+    <ul id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="pastor.html">Pastor</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+    </ul>
     </nav>
     
     <!-- Hero Slider -->
@@ -140,7 +144,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Joyful Assembly Pentecostal Church. All rights reserved.</p>
+            <p>&copy;2026Joyful Assembly Pentecostal Church. All rights reserved.</p>
         </div>
     </footer>
     

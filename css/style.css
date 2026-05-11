@@ -768,3 +768,495 @@ footer {
         height: 250px;
     }
 }
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   For Joyful Assembly Church Website
+   ============================================ */
+
+/* Base Mobile Settings */
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* ===== MOBILE HEADER ===== */
+@media (max-width: 992px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    
+    .logo-section {
+        justify-content: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .church-logo, .church-crest {
+        zoom: 0.8;
+    }
+    
+    .church-name h1 {
+        font-size: 20px;
+    }
+    
+    .church-name p {
+        font-size: 11px;
+    }
+    
+    .contact-info {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 12px;
+    }
+}
+
+/* ===== MOBILE NAVIGATION ===== */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 10px;
+    }
+    
+    /* Hamburger Menu Option (if you want to add later) */
+    .mobile-menu-btn {
+        display: block;
+        background: var(--primary);
+        color: white;
+        padding: 12px;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+/* ===== MOBILE HERO SLIDER ===== */
+@media (max-width: 768px) {
+    .hero {
+        height: 350px;
+    }
+    
+    .slide-content {
+        bottom: 20%;
+        left: 5%;
+        right: 5%;
+        text-align: center;
+    }
+    
+    .slide-content h2 {
+        font-size: 24px;
+    }
+    
+    .slide-content p {
+        font-size: 14px;
+    }
+    
+    .slide-btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ===== MOBILE CONTAINER & SECTIONS ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 15px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .section-title::after {
+        width: 60px;
+    }
+    
+    .welcome {
+        padding: 25px;
+    }
+    
+    .welcome p {
+        font-size: 16px;
+    }
+}
+
+/* ===== MOBILE SERVICE TIMES GRID ===== */
+@media (max-width: 768px) {
+    .times-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .time-card {
+        padding: 15px;
+    }
+    
+    .time-card i {
+        font-size: 36px;
+    }
+    
+    .time-card h3 {
+        font-size: 18px;
+    }
+}
+
+/* ===== MOBILE GALLERY PAGE ===== */
+@media (max-width: 768px) {
+    /* Gallery wrapper becomes column */
+    .gallery-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* Sidebar becomes full width */
+    .gallery-sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+    }
+    
+    .sidebar-menu {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .menu-section {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    /* Gallery grid becomes single column */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .media-card .media-preview {
+        height: 200px;
+    }
+    
+    /* Slideshow adjustments */
+    .slideshow-slide img,
+    .slideshow-slide video {
+        height: 280px;
+    }
+    
+    .slide-caption h3 {
+        font-size: 16px;
+    }
+    
+    .slide-caption p {
+        font-size: 12px;
+    }
+    
+    .slideshow-controls {
+        padding: 0 10px;
+    }
+    
+    .slideshow-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    /* View toggles */
+    .view-toggles {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    .view-toggle {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    .controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .view-buttons {
+        justify-content: center;
+    }
+}
+
+/* ===== MOBILE PASTORS PAGE ===== */
+@media (max-width: 768px) {
+    .pastors-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .pastor-image {
+        height: 280px;
+    }
+    
+    .pastor-info h3 {
+        font-size: 22px;
+    }
+    
+    .pastor-bio p {
+        font-size: 14px;
+    }
+    
+    .leadership-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+    
+    .leader-image {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* ===== MOBILE CONTACT PAGE ===== */
+@media (max-width: 768px) {
+    .auth-form {
+        padding: 25px;
+        margin: 0 10px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* ===== MOBILE FOOTER ===== */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: center;
+    }
+    
+    .footer-section h3 {
+        margin-bottom: 15px;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        font-size: 11px;
+    }
+}
+
+/* ===== TOUCH FRIENDLY BUTTONS ===== */
+@media (max-width: 768px) {
+    button,
+    .btn,
+    .slide-btn,
+    .view-btn,
+    .menu-item,
+    .gallery-item,
+    .media-card {
+        cursor: pointer;
+        min-height: 44px; /* Apple's recommended minimum touch target size */
+    }
+    
+    /* Improve tap highlighting */
+    a, button, .clickable {
+        -webkit-tap-highlight-color: rgba(218, 165, 32, 0.3);
+    }
+}
+
+/* ===== SMALL PHONES (iPhone SE, etc.) ===== */
+@media (max-width: 480px) {
+    .church-name h1 {
+        font-size: 18px;
+    }
+    
+    .church-logo, .church-crest {
+        transform: scale(0.7);
+    }
+    
+    .hero {
+        height: 280px;
+    }
+    
+    .slide-content h2 {
+        font-size: 20px;
+    }
+    
+    .slide-content p {
+        font-size: 12px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .time-card {
+        padding: 12px;
+    }
+    
+    .gallery-sidebar {
+        padding: 10px;
+    }
+    
+    .sidebar-menu {
+        grid-template-columns: 1fr;
+    }
+    
+    .slideshow-slide img,
+    .slideshow-slide video {
+        height: 220px;
+    }
+    
+    .auth-form {
+        padding: 20px;
+    }
+    
+    .contact-info {
+        font-size: 10px;
+    }
+}
+
+/* ===== TABLET LANDSCAPE ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .pastors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .times-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .container {
+        padding: 50px 30px;
+    }
+}
+
+/* ===== FIX FOR MOBILE DROPDOWNS & MODALS ===== */
+@media (max-width: 768px) {
+    .modal img,
+    .modal video {
+        max-width: 95%;
+        max-height: 80vh;
+    }
+    
+    .close-modal {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
+    
+    select, 
+    input, 
+    textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+}
+
+/* ===== SMOOTH SCROLLING FOR MOBILE ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== PREVENT TEXT RESIZE ON ORIENTATION CHANGE ===== */
+@media (max-width: 768px) {
+    body {
+        -webkit-text-size-adjust: 100%;
+    }
+}
+
+/* ===== OPTIMIZE IMAGES FOR MOBILE ===== */
+@media (max-width: 768px) {
+    img, video {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .media-preview {
+        object-fit: cover;
+    }
+}
+
+/* ===== MOBILE-FRIENDLY UPLOAD AREA ===== */
+@media (max-width: 768px) {
+    .upload-container {
+        padding: 20px;
+    }
+    
+    .upload-icon {
+        font-size: 40px;
+    }
+    
+    .upload-container h3 {
+        font-size: 18px;
+    }
+    
+    .upload-container p {
+        font-size: 12px;
+    }
+}
+
+/* ===== BETTER SPACING FOR MOBILE LISTS ===== */
+@media (max-width: 768px) {
+    .property-item {
+        padding: 10px 0;
+    }
+    
+    .schedule-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    
+    .speaker-list {
+        gap: 15px;
+    }
+}
+ .mobile-menu-btn {
+        display: none;
+        background: var(--primary);
+        color: white;
+        padding: 12px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 8px;
+    }
+    
+    @media (max-width: 768px) {
+        .mobile-menu-btn {
+            display: block;
+        }
+        
+        nav ul {
+            display: none;
+            flex-direction: column;
+        }
+        
+        nav ul.show {
+            display: flex;
+        }
+    }

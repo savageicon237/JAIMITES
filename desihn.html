@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyful Assembly - Revival Flyer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .flyer-revival {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        /* Fire Banner */
+        .fire-banner {
+            background: linear-gradient(135deg, #FF6B35, #8B0000);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fire-banner::before {
+            content: "🔥";
+            font-size: 200px;
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            opacity: 0.2;
+        }
+
+        .fire-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .event-type {
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .event-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        .event-theme {
+            font-size: 24px;
+            font-style: italic;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .date-box {
+            background: linear-gradient(135deg, #8B0000, #DAA520);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .date-box .date {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .date-box .time {
+            font-size: 18px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-card i {
+            font-size: 32px;
+            color: #DAA520;
+            margin-bottom: 10px;
+        }
+
+        .info-card h4 {
+            color: #8B0000;
+            margin-bottom: 5px;
+        }
+
+        .info-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .speakers {
+            margin: 30px 0;
+        }
+
+        .speakers h3 {
+            text-align: center;
+            color: #8B0000;
+            margin-bottom: 25px;
+        }
+
+        .speaker-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .speaker {
+            text-align: center;
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            background: #DAA520;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .speaker-name {
+            font-weight: 700;
+            color: #8B0000;
+        }
+
+        .schedule {
+            background: #f5f5f5;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .schedule h3 {
+            text-align: center;
+            color: #8B0000;
+            margin-bottom: 20px;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .schedule-time {
+            font-weight: 700;
+            color: #DAA520;
+        }
+
+        .cta-large {
+            background: linear-gradient(135deg, #8B0000, #DAA520);
+            color: white;
+            text-align: center;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: block;
+            font-weight: 700;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .cta-large:hover {
+            transform: scale(1.02);
+        }
+
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #8B0000;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background: #DAA520;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .print-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .event-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer-revival" id="flyer">
+        <div class="fire-banner">
+            <div class="fire-icon">🔥 🔥 🔥</div>
+            <div class="event-type">SPECIAL EVENT</div>
+            <div class="event-title">FIRE CONFERENCE 2024</div>
+            <div class="event-theme">"IGNITING THE FLAME OF REVIVAL"</div>
+        </div>
+        
+        <div class="content">
+            <div class="date-box">
+                <div class="date">MAY 24 - 26, 2024</div>
+                <div class="time">7:00 PM Daily | Sunday 9:00 AM</div>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>VENUE</h4>
+                    <p>Joyful Assembly Sanctuary<br>123 Faith Avenue, City of Hope</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-ticket-alt"></i>
+                    <h4>ADMISSION</h4>
+                    <p>FREE ENTRY<br>All are welcome!</p>
+                </div>
+            </div>
+            
+            <div class="speakers">
+                <h3>🔥 GUEST SPEAKERS 🔥</h3>
+                <div class="speaker-list">
+                    <div class="speaker">
+                        <div class="speaker-avatar"><i class="fas fa-user-pastor"></i></div>
+                        <div class="speaker-name">Dr. Michael Thompson</div>
+                        <small>Senior Pastor</small>
+                    </div>
+                    <div class="speaker">
+                        <div class="speaker-avatar"><i class="fas fa-microphone-alt"></i></div>
+                        <div class="speaker-name">Evang. Sarah Mensah</div>
+                        <small>International Speaker</small>
+                    </div>
+                    <div class="speaker">
+                        <div class="speaker-avatar"><i class="fas fa-hands-praying"></i></div>
+                        <div class="speaker-name">Prophet John Asare</div>
+                        <small>Prophetic Minister</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="schedule">
+                <h3>📅 CONFERENCE SCHEDULE</h3>
+                <div class="schedule-item">
+                    <span class="schedule-time">Friday 7PM</span>
+                    <span>Opening Night - Worship & Word</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">Saturday 7PM</span>
+                    <span>Prophetic Deliverance Service</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">Sunday 9AM</span>
+                    <span>Grand Finale - Miracle Service</span>
+                </div>
+            </div>
+            
+            <a href="#" class="cta-large">
+                <i class="fas fa-phone-alt"></i> CALL FOR MORE INFO: +1 (234) 567-8900
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>Joyful Assembly Pentecostal Church | www.joyfulassembly.org | Everyone is Welcome!</p>
+        </div>
+    </div>
+    
+    <button class="print-btn" onclick="window.print()">
+        <i class="fas fa-print"></i> Print / Save as PDF
+    </button>
+</body>
+</html>
